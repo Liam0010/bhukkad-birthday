@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Bhukkad 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6e6, #fff3f3);
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #ffb3b3;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .message {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .gallery-section {
+      padding: 2rem 1rem;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: #ffcccc;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tab:hover, .tab.active {
+      background: #ff9999;
+      color: white;
+    }
+    .image-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .image-grid.active {
+      display: grid;
+    }
+    .image-grid img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .image-grid img:hover {
+      transform: scale(1.05);
+    }
+    audio {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #ffd9d9;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 182, 193, 0.4);
+      border-radius: 50%;
+      animation: floatUp 10s linear infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles"></div>
+
+  <header>
+    🎂 Happy Birthday Bhukkad 🎂
+  </header>
+
+  <section class="message">
+    <iframe src="https://docs.google.com/document/d/17zcG-1aJiNdTvDQlwPhOVX-SClydh6ugZQTfUro7MhI/preview" width="100%" height="500px" style="border:none;"></iframe>
+  </section>
+
+  <section class="gallery-section">
+    <div class="tabs" id="tabs"></div>
+    <div id="galleries"></div>
+  </section>
+
+  <footer>
+    Website will disappear in 24 hours — made with ❤️
+  </footer>
+
+  <audio id="bgMusic" loop>
+    <source src="https://www.youtube.com/watch?v=5u4xTa3LR2U" type="audio/mp3">
+  </audio>
+
+  <script>
+    const imageGroups = [
+      [
+        'https://drive.google.com/uc?id=1594S0ZAOvgivDb2hreStLSrRdnBVJ2eP',
+        'https://drive.google.com/uc?id=1AjU917wQqzyWC1H7LKCjarAbnJZkYd33',
+        'https://drive.google.com/uc?id=1FAUn7EZ5Pe_ic7ETZnoNCsiHOWXl1tB_',
+        'https://drive.google.com/uc?id=1Vn92HbZ5sFReeYezCJ3YnyvGYAt8diQ9'
+      ],
+      [
+        'https://drive.google.com/uc?id=1_6vRI3ljjpwdNzluRGHhhzNyIDg9bva-',
+        'https://drive.google.com/uc?id=1a_399Up674TkD9Yb99L3dsE_BFLePNEi',
+        'https://drive.google.com/uc?id=1dO5Xw_p4rqP3q-izhfX6O6pAWquYONUd',
+        'https://drive.google.com/uc?id=1lL96VyR-zUW_vxTfqES7yJAp5_lohlqq'
+      ],
+      [
+        'https://drive.google.com/uc?id=1vL3FY_Hsi1-IOmcriUr_E-CIUFS64p_L'
+      ]
+    ];
+
+    const tabContainer = document.getElementById('tabs');
+    const galleryContainer = document.getElementById('galleries');
+
+    imageGroups.forEach((group, index) => {
+      const tab = document.createElement('button');
+      tab.className = 'tab';
+      tab.innerText = `Group ${index + 1}`;
+      tab.onclick = () => showGallery(index);
+      tabContainer.appendChild(tab);
+
+      const grid = document.createElement('div');
+      grid.className = 'image-grid';
+      grid.id = `gallery-${index}`;
+      group.forEach(img => {
+        const i = document.createElement('img');
+        i.src = img;
+        i.onclick = () => document.getElementById('bgMusic').play();
+        grid.appendChild(i);
+      });
+      galleryContainer.appendChild(grid);
+    });
+
+    function showGallery(index) {
+      document.querySelectorAll('.image-grid').forEach(grid => grid.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`gallery-${index}`).classList.add('active');
+      document.querySelectorAll('.tab')[index].classList.add('active');
+    }
+    showGallery(0);
+
+    // Floating bubbles
+    const bubbles = document.querySelector('.bubbles');
+    for (let i = 0; i < 30; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      b.style.left = `${Math.random() * 100}%`;
+      b.style.width = `${10 + Math.random() * 20}px`;
+      b.style.height = b.style.width;
+      b.style.animationDuration = `${8 + Math.random() * 4}s`;
+      bubbles.appendChild(b);
+    }
+  </script>
+</body>
+</html>
