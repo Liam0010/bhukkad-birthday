@@ -6,192 +6,168 @@
   <title>Happy Birthday Bhukkad 🎉</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffd4fc, #d4faff);
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #ffe6e6, #fff3f3);
-      overflow-x: hidden;
+      padding: 20px;
     }
-    header {
+    h1 {
       text-align: center;
-      padding: 3rem 1rem;
-      background: #ffb3b3;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .message {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .gallery-section {
-      padding: 2rem 1rem;
+      color: #e91e63;
     }
     .tabs {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 1rem;
+      gap: 10px;
+      margin-bottom: 20px;
     }
-    .tab {
-      margin: 0.5rem;
-      padding: 0.6rem 1.2rem;
+    .tab-button {
+      padding: 10px 20px;
       border: none;
-      background: #ffcccc;
-      border-radius: 30px;
-      font-weight: bold;
+      background-color: #fff;
       cursor: pointer;
-      transition: background 0.3s;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .tab:hover, .tab.active {
-      background: #ff9999;
-      color: white;
+    .tab-button.active {
+      background-color: #e91e63;
+      color: #fff;
     }
-    .image-grid {
+    .gallery {
       display: none;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
-    .image-grid.active {
+    .gallery.active {
       display: grid;
     }
-    .image-grid img {
-      width: 100%;
+    .image-box {
+      background-color: #fff;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .image-grid img:hover {
-      transform: scale(1.05);
-    }
-    audio {
-      display: none;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #ffd9d9;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .bubbles {
-      position: fixed;
-      top: 0;
-      left: 0;
+    img {
       width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
+      height: auto;
+      border-radius: 10px;
     }
-    .bubble {
-      position: absolute;
-      bottom: -50px;
-      width: 20px;
-      height: 20px;
-      background: rgba(255, 182, 193, 0.4);
-      border-radius: 50%;
-      animation: floatUp 10s linear infinite;
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
     }
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        transform: translateY(-120vh) scale(1.5);
-      }
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="bubbles"></div>
+  <h1>Happy Birthday Bhukkad 🎂</h1>
+  <div class="tabs">
+    <button class="tab-button active" onclick="showTab(1)">Group 1</button>
+    <button class="tab-button" onclick="showTab(2)">Group 2</button>
+    <button class="tab-button" onclick="showTab(3)">Group 3</button>
+  </div>
 
-  <header>
-    🎂 Happy Birthday Bhukkad 🎂
-  </header>
-
-  <section class="message">
-    <iframe src="https://docs.google.com/document/d/17zcG-1aJiNdTvDQlwPhOVX-SClydh6ugZQTfUro7MhI/preview" width="100%" height="500px" style="border:none;"></iframe>
-  </section>
-
-  <section class="gallery-section">
-    <div class="tabs" id="tabs"></div>
-    <div id="galleries"></div>
-  </section>
-
-  <footer>
-    Website will disappear in 24 hours — made with ❤️
-  </footer>
-
-  <audio id="bgMusic" loop>
-    <source src="https://www.youtube.com/watch?v=5u4xTa3LR2U" type="audio/mp3">
-  </audio>
+  <div id="group1" class="gallery active"></div>
+  <div id="group2" class="gallery"></div>
+  <div id="group3" class="gallery"></div>
 
   <script>
-    const imageGroups = [
-      [
-        'https://drive.google.com/uc?id=1594S0ZAOvgivDb2hreStLSrRdnBVJ2eP',
-        'https://drive.google.com/uc?id=1AjU917wQqzyWC1H7LKCjarAbnJZkYd33',
-        'https://drive.google.com/uc?id=1FAUn7EZ5Pe_ic7ETZnoNCsiHOWXl1tB_',
-        'https://drive.google.com/uc?id=1Vn92HbZ5sFReeYezCJ3YnyvGYAt8diQ9'
-      ],
-      [
-        'https://drive.google.com/uc?id=1_6vRI3ljjpwdNzluRGHhhzNyIDg9bva-',
-        'https://drive.google.com/uc?id=1a_399Up674TkD9Yb99L3dsE_BFLePNEi',
-        'https://drive.google.com/uc?id=1dO5Xw_p4rqP3q-izhfX6O6pAWquYONUd',
-        'https://drive.google.com/uc?id=1lL96VyR-zUW_vxTfqES7yJAp5_lohlqq'
-      ],
-      [
-        'https://drive.google.com/uc?id=1vL3FY_Hsi1-IOmcriUr_E-CIUFS64p_L'
-      ]
+    const imageLinks = [
+      "12d_S5py4-pT1PlII2FLphLHqJ_A6Acum",
+      "14GcJSDqnQ-WrF-xG2NyvwNO4qQhD1Bqf",
+      "1594S0ZAOvgivDb2hreStLSrRdnBVJ2eP",
+      "18y6CcDFIZG7LN-r7qyxDMw_aB355F8Dh",
+      "1AjU917wQqzyWC1H7LKCjarAbnJZkYd33",
+      "1Dw0NRn4sWmB6dmjwztQbPoV95OIkBIop",
+      "1EZRuAYYEo0MONPbgneL1O8zlWZVWYqlo",
+      "1FAUn7EZ5Pe_ic7ETZnoNCsiHOWXl1tB_",
+      "1HK2N8-226WeidCet7ELRisQ_Syr6__vm",
+      "1HOvkeKYZRnLlZqhNCMoS9yHvKJpCwXc2",
+      "1J7c4re9wglVLJxlmB2_vMjn8zWiCo5k8",
+      "1KC8tacbLCBUQNrTCQoSN-wprbk5fbSFC",
+      "1M7EIpYXgYStNR-6xWNz-jKWRmCakybrk",
+      "1M9OtqiIR3oUm8z1qRX1NYlYAN3CNb6Ya",
+      "1MvDC5MPnx3O8tQJm58OgdE9KPhecuEqe",
+      "1NRSRzxNQdAeQrUcySX8om3Mz182L8tWe",
+      "1Nad5JWTourN05cJSs4WPFgF6x4wLFijj",
+      "1PiWDONhIg6g1ln9yLXkx0-Kc91h9I_6S",
+      "1PiqC0v_mssebaKGiyZewAPjHEzuYrJMl",
+      "1VVjbtiJDRyyWnmzxaMMYVY0Hs_r-oJ23",
+      "1Vn92HbZ5sFReeYezCJ3YnyvGYAt8diQ9",
+      "1WvYW5WwRwNzNTIkKvm5T5q6J2RjgznRQ",
+      "1ZpTU7zKsN8qxhD_GN4bLubv6C4HMiM5A",
+      "1_6vRI3ljjpwdNzluRGHhhzNyIDg9bva-",
+      "1a_399Up674TkD9Yb99L3dsE_BFLePNEi",
+      "1amSWJv3BD8xMuplxiS60Wn_NGuSR7x_k",
+      "1cXUoQQY2eXrtZfhXODh9EWWAUxTIVMy9",
+      "1dO5Xw_p4rqP3q-izhfX6O6pAWquYONUd",
+      "1dQqgFXM5EjBSr7pqRd0foHpTzWM2HMxy",
+      "1gjGPDOr7lsUhsXBJ078TQn9ui_-MkCtf",
+      "1lL96VyR-zUW_vxTfqES7yJAp5_lohlqq",
+      "1mTeXbZ7NCa3Ey_WZBkF_XqeWjoCs63WN",
+      "1nFqnJm4x3oYiXRXWVFnkVvqV0-jHa_q5",
+      "1nNRyQx3Khz0k9iRvUBddv_inlZStiTw1",
+      "1rHw_U_Ns4XWwwGkpoBi5q5E8BYIRrNyM",
+      "1rKoPCPCd_5FwrhFkrICPELHMt99iYkOU",
+      "1tPh5KFToHEWeaMf8DjgsVAHlKcPfmBtR",
+      "1thvZpGV3agYs26Q4Qx7yuKWTv1GjChkr",
+      "1uvXjvTeFlyLUYWgVL-DeVx8Kuc_3PPqi",
+      "1vL3FY_Hsi1-IOmcriUr_E-CIUFS64p_L",
+      "1za3ZAATwholO-cYLl8ruVGt8UIPLm3q3"
     ];
 
-    const tabContainer = document.getElementById('tabs');
-    const galleryContainer = document.getElementById('galleries');
-
-    imageGroups.forEach((group, index) => {
-      const tab = document.createElement('button');
-      tab.className = 'tab';
-      tab.innerText = `Group ${index + 1}`;
-      tab.onclick = () => showGallery(index);
-      tabContainer.appendChild(tab);
-
-      const grid = document.createElement('div');
-      grid.className = 'image-grid';
-      grid.id = `gallery-${index}`;
-      group.forEach(img => {
-        const i = document.createElement('img');
-        i.src = img;
-        i.onclick = () => document.getElementById('bgMusic').play();
-        grid.appendChild(i);
+    function showTab(tabNumber) {
+      document.querySelectorAll('.tab-button').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === tabNumber);
       });
-      galleryContainer.appendChild(grid);
+      document.querySelectorAll('.gallery').forEach((gal, idx) => {
+        gal.classList.toggle('active', idx + 1 === tabNumber);
+      });
+    }
+
+    function createImageBox(link) {
+      return `
+        <div class="image-box">
+          <img src="https://drive.google.com/uc?export=view&id=${link}" alt="Image" />
+          <div class="controls">
+            <select>
+              <option>Arial</option>
+              <option>Georgia</option>
+              <option>Courier New</option>
+              <option>Verdana</option>
+            </select>
+            <select>
+              <option>12px</option>
+              <option>14px</option>
+              <option>16px</option>
+              <option>18px</option>
+              <option>20px</option>
+            </select>
+          </div>
+          <textarea rows="3" placeholder="Write your message here..."></textarea>
+        </div>
+      `;
+    }
+
+    const groups = ["group1", "group2", "group3"];
+    imageLinks.forEach((id, i) => {
+      const group = document.getElementById(groups[Math.floor(i / 14)]);
+      group.innerHTML += createImageBox(id);
     });
-
-    function showGallery(index) {
-      document.querySelectorAll('.image-grid').forEach(grid => grid.classList.remove('active'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(`gallery-${index}`).classList.add('active');
-      document.querySelectorAll('.tab')[index].classList.add('active');
-    }
-    showGallery(0);
-
-    // Floating bubbles
-    const bubbles = document.querySelector('.bubbles');
-    for (let i = 0; i < 30; i++) {
-      const b = document.createElement('div');
-      b.className = 'bubble';
-      b.style.left = `${Math.random() * 100}%`;
-      b.style.width = `${10 + Math.random() * 20}px`;
-      b.style.height = b.style.width;
-      b.style.animationDuration = `${8 + Math.random() * 4}s`;
-      bubbles.appendChild(b);
-    }
   </script>
 </body>
 </html>
